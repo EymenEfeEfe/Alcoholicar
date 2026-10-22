@@ -1,0 +1,6 @@
+{
+  "name": "AlcoholiCar - Smart Ignition Interlock",
+  "description": "Smart ignition-interlock hardware and automated relative emergency alert ecosystem engineered by student makers to end drunk driving before the key turns.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
