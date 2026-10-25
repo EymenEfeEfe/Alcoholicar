@@ -5,7 +5,33 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(),
+      tailwindcss(),
+      {
+        name: 'discord-domain-verification',
+        configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            if (req.url === '/.well-known/discord') {
+              res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+              res.end('dh=64983162bbe248ba219bda041cc2b72ea0483525');
+              return;
+            }
+            next();
+          });
+        },
+        configurePreviewServer(server) {
+          server.middlewares.use((req, res, next) => {
+            if (req.url === '/.well-known/discord') {
+              res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+              res.end('dh=64983162bbe248ba219bda041cc2b72ea0483525');
+              return;
+            }
+            next();
+          });
+        },
+      },
+    ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
